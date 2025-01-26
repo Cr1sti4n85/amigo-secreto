@@ -1,6 +1,8 @@
 //Variables globales
 const amigos = [];
 const amigosSorteados = [];
+const lista = document.getElementById("listaAmigos");
+const resultado = document.getElementById("resultado");
 
 function agregarAmigo() {
   const amigo = document.getElementById("amigo").value;
@@ -9,7 +11,6 @@ function agregarAmigo() {
     return;
   }
 
-  const lista = document.getElementById("listaAmigos");
   amigos.push(amigo);
   const itemAmigo = document.createElement("li");
   itemAmigo.innerHTML = amigo;
@@ -25,10 +26,10 @@ function sortearAmigo() {
 
   if (amigosSorteados.length === amigos.length) {
     alert("Ya se sortearon todos los amigos");
+    reinicializarVariables();
     return;
   }
 
-  const resultado = document.getElementById("resultado");
   const index = Math.floor(Math.random() * amigos.length);
 
   if (revisarAmigosSorteados(amigos[index])) {
@@ -42,4 +43,11 @@ function sortearAmigo() {
 
 function revisarAmigosSorteados(amigo) {
   return amigosSorteados.includes(amigo);
+}
+
+function reinicializarVariables() {
+  lista.innerHTML = "";
+  resultado.innerHTML = "";
+  amigosSorteados = [];
+  amigos = [];
 }
