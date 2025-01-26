@@ -22,6 +22,12 @@ function sortearAmigo() {
     alert("En estos momentos no hay amigos en la lista");
     return;
   }
+
+  if (amigosSorteados.length === amigos.length) {
+    alert("Ya se sortearon todos los amigos");
+    return;
+  }
+
   const resultado = document.getElementById("resultado");
   const index = Math.floor(Math.random() * amigos.length);
 
@@ -31,6 +37,7 @@ function sortearAmigo() {
   }
 
   resultado.innerHTML = amigos[index];
+  amigosSorteados.push(amigos[index]);
 }
 
 function revisarAmigosSorteados(amigo) {
