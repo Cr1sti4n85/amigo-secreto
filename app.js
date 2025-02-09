@@ -39,17 +39,13 @@ function sortearAmigo() {
 
   const index = Math.floor(Math.random() * amigos.length);
 
-  if (revisarAmigosSorteados(amigos[index])) {
+  if (amigosSorteados.includes(amigos[index])) {
     sortearAmigo();
     return;
   }
 
   resultado.innerHTML = amigos[index];
   amigosSorteados.push(amigos[index]);
-}
-
-function revisarAmigosSorteados(amigo) {
-  return amigosSorteados.includes(amigo);
 }
 
 function reinicializarVariables() {
