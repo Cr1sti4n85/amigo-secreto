@@ -1,6 +1,6 @@
 //Variables globales
-const amigos = [];
-const amigosSorteados = [];
+let amigos = [];
+let amigosSorteados = [];
 const lista = document.getElementById("listaAmigos");
 const resultado = document.getElementById("resultado");
 
@@ -27,13 +27,23 @@ function agregarAmigo() {
 
 function sortearAmigo() {
   if (!amigos.length) {
-    alert("En estos momentos no hay amigos en la lista");
+    alert(
+      "En estos momentos no hay amigos en la lista. Comienza a ingresarlos"
+    );
+    cambiarBoton("#fe652b", "Sortear amigo");
+    deshabilitarInput(false);
     return;
   }
 
   if (amigosSorteados.length === amigos.length) {
-    alert("Ya se sortearon todos los amigos");
+    const res = confirm(
+      "Ya se sortearon todos los amigos. ¿Quieres ingresar otra lista?"
+    );
     reinicializarVariables();
+    if (res) {
+      cambiarBoton("#fe652b", "Sortear amigo");
+      deshabilitarInput(false);
+    }
     return;
   }
 
@@ -50,6 +60,11 @@ function sortearAmigo() {
     `.${amigos[index].replace(" ", "_")}`
   );
   itemListaEliminado.style.textDecoration = "line-through";
+
+  if (amigosSorteados.length === amigos.length) {
+    cambiarBoton("#4B69FD", "REINICIAR");
+    deshabilitarInput(true);
+  }
 }
 
 function reinicializarVariables() {
@@ -57,4 +72,14 @@ function reinicializarVariables() {
   resultado.innerHTML = "";
   amigosSorteados = [];
   amigos = [];
+}
+
+function cambiarBoton(color, texto) {
+  document.querySelector(".button-draw").style.backgroundColor = color;
+  document.querySelector(".button-draw").childNodes[2].textContent = texto;
+}
+
+function deshabilitarInput(estaDeshabilitado) {
+  document.getElementById("amigo").disabled = estaDeshabilitado;
+  document.querySelector(".button-add").disabled = estaDeshabilitado;
 }
