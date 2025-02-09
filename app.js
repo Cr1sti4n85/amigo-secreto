@@ -11,9 +11,16 @@ function agregarAmigo() {
     return;
   }
 
+  if (amigos.includes(amigo)) {
+    alert("Este nombre ya fue ingresado");
+    return;
+  }
+
   amigos.push(amigo);
   const itemAmigo = document.createElement("li");
   itemAmigo.innerHTML = amigo;
+  const classAmigo = amigo.replace(" ", "_");
+  itemAmigo.classList.add(`${classAmigo}`);
   lista.appendChild(itemAmigo);
   document.getElementById("amigo").value = "";
 }
