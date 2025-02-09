@@ -46,6 +46,10 @@ function sortearAmigo() {
 
   resultado.innerHTML = amigos[index];
   amigosSorteados.push(amigos[index]);
+  const itemListaEliminado = document.querySelector(
+    `.${amigos[index].replace(" ", "_")}`
+  );
+  itemListaEliminado.style.textDecoration = "line-through";
 }
 
 function reinicializarVariables() {
